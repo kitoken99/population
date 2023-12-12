@@ -1,19 +1,20 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-export interface Prefecture {
-  prefName: string
+interface State {
+  prefList: Map<number, string>
 }
 
-interface State {
-  prefList: Map<number, Prefecture>
+interface PrefInfo {
+  prefCode: number,
+  prefName: string
 }
 
 export const usePrefectureStore = defineStore({
   id: 'prefecture',
   state: (): State => {
     return {
-      prefList: new Map<number, Prefecture>()
+      prefList: new Map<number, string>()
     }
   },
   getters: {},
@@ -30,7 +31,7 @@ export const usePrefectureStore = defineStore({
       })
       if (response.status === 200) {
         const prefList = response.data.result
-        prefList.forEach((prefInfo) => {
+        prefList.forEach((prefInfo:PrefInfo) => {
           this.prefList.set(prefInfo.prefCode, prefInfo.prefName)
         })
       }

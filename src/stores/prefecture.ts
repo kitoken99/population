@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
-interface PrefInfo {
+export interface PrefInfo {
   prefCode: number
   prefName: string
 }

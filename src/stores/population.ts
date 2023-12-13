@@ -32,17 +32,27 @@ export const usePopulationStore = defineStore({
   getters: {
     getPopulationList: (state) => {
       return (mode: string) => {
-        const populationStore = usePrefectureStore();
-        const series:Series = [];
-        state.populationList.forEach((data, prefCode):void =>{
+        const populationStore = usePrefectureStore()
+        const series: Series = []
+        state.populationList.forEach((data, prefCode): void => {
           const name = populationStore.prefList.get(prefCode)
-          if(name){
-            series.push({name: name, data: data.get(mode).map(item => item.value)});
+          if (name) {
+            series.push({ name: name, data: data.get(mode).map((item) => item.value) })
           }
         })
-        return series;
+        return series
       }
     },
+    getCategories: (state) => {
+      return (mode: string) => {
+        const firstData = state.populationList.values().next().value
+        if (firstData) {
+          const categories = firstData.get(mode).map((item) => item.year.toString())
+          return categories
+        }
+        return []
+      }
+    }
   },
   actions: {
     async getPopulation(prefCode: number) {

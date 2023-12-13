@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { usePrefectureStore } from '@/stores/prefecture'
+import { computed, ref } from 'vue'
 import { usePopulationStore } from '@/stores/population'
-import type {  PrefPopulationList } from '@/stores/population'
-const prefectureStore = usePrefectureStore()
+
+
 const populationStore = usePopulationStore()
-prefectureStore.getPrefectureInfo()
-const populationList = computed((): PrefPopulationList => populationStore.populationList)
-
+const mode = ref('総人口')
+const populationList = computed(() => populationStore.getPopulationList(mode.value))
+const chartOptions = ref({
+  series: populationList
+})
 </script>
-
 <template>
   <section>
+    <highcharts :options="chartOptions"></highcharts>
     {{ populationList }}
   </section>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>

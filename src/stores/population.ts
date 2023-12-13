@@ -1,19 +1,20 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { usePrefectureStore } from './prefecture'
 import type { PrefInfo } from './prefecture'
- 
+
 export interface PopulationDataPerYear {
-  year: number;
-  value: number;
-  rate?: number;
+  year: number
+  value: number
+  rate?: number
 }
 
-export interface PopulationData{
-  label: string;
-  data: PopulationDataPerYear[];
+export interface PopulationData {
+  label: string
+  data: PopulationDataPerYear[]
 }
 
-export type PrefPopulation = Map<string, PopulationDataPerYear[]>;
+export type PrefPopulation = Map<string, PopulationDataPerYear[]>
 
 export type PrefPopulationList = Map<PrefInfo['prefCode'], PrefPopulation>
 
@@ -28,7 +29,21 @@ export const usePopulationStore = defineStore({
       populationList: new Map<PrefInfo['prefCode'], PrefPopulation>()
     }
   },
-  getters: {},
+  getters: {
+    getPopulationList: (state) => {
+      return (mode: string) => {
+        const populationStore = usePrefectureStore();
+        const series:Series = [];
+        state.populationList.forEach((data, prefCode):void =>{
+          const name = populationStore.prefList.get(prefCode)
+          if(name){
+            series.push({name: name, data: data.get(mode).map(item => item.value)});
+          }
+        })
+        return series;
+      }
+    },
+  },
   actions: {
     async getPopulation(prefCode: number) {
       const key = import.meta.env.VITE_APIKEY
@@ -42,11 +57,11 @@ export const usePopulationStore = defineStore({
       })
       if (response.status === 200) {
         const data = response.data.result.data
-        const prefPopulation = new Map<string, PopulationDataPerYear[]>();
-        data.forEach((value: PopulationData ) => {
+        const prefPopulation = new Map<string, PopulationDataPerYear[]>()
+        data.forEach((value: PopulationData) => {
           prefPopulation.set(value.label, value.data)
         })
-        this.populationList.set(prefCode, prefPopulation);
+        this.populationList.set(prefCode, prefPopulation)
       }
     },
     deletePopulation(prefCode: number) {

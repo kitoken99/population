@@ -8,8 +8,8 @@ const populationStore = usePopulationStore()
 prefectureStore.getPrefectureInfo()
 const prefList = computed((): PrefList => prefectureStore.prefList)
 const onChangedCheckbox = (prefCode: PrefInfo['prefCode'], event: Event): void => {
-  const target = event.target as HTMLInputElement;
-  if(target.checked)populationStore.getPopulation(prefCode)
+  const target = event.target as HTMLInputElement
+  if (target.checked) populationStore.getPopulation(prefCode)
   else populationStore.deletePopulation(prefCode)
 }
 </script>
@@ -18,14 +18,15 @@ const onChangedCheckbox = (prefCode: PrefInfo['prefCode'], event: Event): void =
   <section>
     <h2>都道府県</h2>
     <div class="pref-list">
-      <div 
-      class="pref-item"
-      v-for="[prefCode, prefName] in prefList"
-      v-bind:key = prefCode
-      >
-      <input type="checkbox" :id="prefName" :name="prefName" v-on:change="onChangedCheckbox(prefCode, $event)"/>
-      <label :for="prefName">{{ prefName }}</label>
-    </div>
+      <div class="pref-item" v-for="[prefCode, prefName] in prefList" v-bind:key="prefCode">
+        <input
+          type="checkbox"
+          :id="prefName"
+          :name="prefName"
+          v-on:change="onChangedCheckbox(prefCode, $event)"
+        />
+        <label :for="prefName">{{ prefName }}</label>
+      </div>
     </div>
   </section>
 </template>
@@ -34,7 +35,7 @@ const onChangedCheckbox = (prefCode: PrefInfo['prefCode'], event: Event): void =
   display: flex;
   flex-wrap: wrap;
 }
-.pref-item{
+.pref-item {
   padding: 0 5px 5px 0;
 }
 </style>

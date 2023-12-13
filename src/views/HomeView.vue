@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import PrefList from '../components/PrefList.vue'
+import PrefChart from '../components/PrefChart.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <PrefList />
+    <PrefChart />
   </main>
 </template>

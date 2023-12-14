@@ -20,13 +20,17 @@ export type PrefPopulationList = Map<PrefInfo['prefCode'], PrefPopulation>
 
 interface State {
   populationList: PrefPopulationList
+  pointStart: number
+  pointInterval: number
 }
 
 export const usePopulationStore = defineStore({
   id: 'population',
   state: (): State => {
     return {
-      populationList: new Map<PrefInfo['prefCode'], PrefPopulation>()
+      populationList: new Map<PrefInfo['prefCode'], PrefPopulation>(),
+      pointStart: 1960,
+      pointInterval: 5,
     }
   },
   getters: {

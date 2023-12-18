@@ -1,19 +1,19 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import type { PrefInfo } from './prefecture'
- 
+
 export interface PopulationDataPerYear {
-  year: number;
-  value: number;
-  rate?: number;
+  year: number
+  value: number
+  rate?: number
 }
 
-export interface PopulationData{
-  label: string;
-  data: PopulationDataPerYear[];
+export interface PopulationData {
+  label: string
+  data: PopulationDataPerYear[]
 }
 
-export type PrefPopulation = Map<string, PopulationDataPerYear[]>;
+export type PrefPopulation = Map<string, PopulationDataPerYear[]>
 
 export type PrefPopulationList = Map<PrefInfo['prefCode'], PrefPopulation>
 
@@ -42,11 +42,11 @@ export const usePopulationStore = defineStore({
       })
       if (response.status === 200) {
         const data = response.data.result.data
-        const prefPopulation = new Map<string, PopulationDataPerYear[]>();
-        data.forEach((value: PopulationData ) => {
+        const prefPopulation = new Map<string, PopulationDataPerYear[]>()
+        data.forEach((value: PopulationData) => {
           prefPopulation.set(value.label, value.data)
         })
-        this.populationList.set(prefCode, prefPopulation);
+        this.populationList.set(prefCode, prefPopulation)
       }
     },
     deletePopulation(prefCode: number) {

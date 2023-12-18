@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { usePrefectureStore } from './prefecture'
 import type { PrefInfo } from './prefecture'
+import type { Series, Mode } from '@/interfaces'
 
 export interface PopulationDataPerYear {
   year: number
@@ -30,7 +31,7 @@ export const usePopulationStore = defineStore({
     return {
       populationList: new Map<PrefInfo['prefCode'], PrefPopulation>(),
       pointStart: 1960,
-      pointInterval: 5,
+      pointInterval: 5
     }
   },
   getters: {

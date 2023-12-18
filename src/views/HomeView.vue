@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import PrefList from '../components/PrefList.vue'
-import PrefChart from '../components/PrefChart.vue'
+  import PrefList from '../components/PrefList.vue'
+  import PrefChart from '../components/PrefChart.vue'
 </script>
 
 <template>

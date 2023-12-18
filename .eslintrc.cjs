@@ -11,5 +11,12 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules:{
+    "comma-dangle": "warn",
+    "no-console": "warn",
+    "no-extra-parens": "warn",
+    "no-negated-in-lhs": "warn",
+    "eqeqeq": "warn"
   }
 }

@@ -13,6 +13,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
+  "lint-staged": {
+    "src/**/*.{vue,js,ts,tsx,json,scss,css}": ["npm run lint","npm run type-check","npm run format"]
+  },
   "dependencies": {
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",

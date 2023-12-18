@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import { Chart as highcharts } from 'highcharts-vue'
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import { usePopulationStore } from '@/stores/population'
 
   const populationStore = usePopulationStore()
-  const mode = ref('総人口')
-  const populationList = computed(() => populationStore.getPopulationList(mode.value))
+  const selected_category = computed(() => populationStore.selected_category)
+  const populationList = computed(() => populationStore.getPopulationList)
   const pointStart = computed(() => populationStore.pointStart)
   const pointInterval = computed(() => populationStore.pointInterval)
   const chartOptions = ref({
     title: {
-      text: mode.value
+      text: selected_category.value
     },
     yAxis: {
       title: {
@@ -30,7 +30,6 @@
       align: 'right',
       verticalAlign: 'middle'
     },
-
     plotOptions: {
       series: {
         label: {
@@ -57,6 +56,9 @@
         }
       ]
     }
+  })
+  watch(selected_category, () => {
+    chartOptions.value.title.text = selected_category.value
   })
 </script>
 <template>

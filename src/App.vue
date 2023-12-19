@@ -3,17 +3,7 @@
 </script>
 
 <template>
-  <Suspense>
-    <template #default>
-      <RouterView />
-    </template>
-    <template #fallback>
-      <span>初期表示画面のメッセージです</span>
-    </template>
-    <!-- <template #error>
-      <h1>表示中にエラーが発生しました</h1>
-    </template> -->
-  </Suspense>
+  <RouterView />
 </template>
 
 <style scoped>

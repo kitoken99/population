@@ -9,6 +9,11 @@
   const pointStart = computed(() => populationStore.pointStart)
   const pointInterval = computed(() => populationStore.pointInterval)
   const chartOptions = ref({
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
     title: {
       text: selected_category.value
     },
@@ -23,12 +28,14 @@
     xAxis: {
       title: {
         text: '年度'
+      },
+      accessibility: {
+        description: '年度'
       }
     },
-    legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle'
+    tooltip: {
+      valueSuffix: '%',
+      stickOnContact: true
     },
     plotOptions: {
       series: {
@@ -37,6 +44,18 @@
         },
         pointStart: pointStart.value,
         pointInterval: pointInterval.value
+      }
+    },
+    accessibility: {
+      keyboardNavigation: {
+        focusBorder: {
+          style: {
+            lineWidth: 3,
+            color: '#aa1111',
+            borderRadius: 5
+          },
+          margin: 4
+        }
       }
     },
     series: populationList,

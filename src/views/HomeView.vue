@@ -6,8 +6,14 @@
 
 <template>
   <main>
-    <PrefList />
-    <CategoryCheckBoxes />
-    <PrefChart />
+    <Suspense>
+      <template #default>
+        <div>
+          <PrefList />
+          <CategoryCheckBoxes />
+          <PrefChart />
+        </div>
+      </template>
+    </Suspense>
   </main>
 </template>

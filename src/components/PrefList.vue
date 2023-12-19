@@ -5,7 +5,7 @@
   import { usePopulationStore } from '@/stores/population'
   const prefectureStore = usePrefectureStore()
   const populationStore = usePopulationStore()
-  prefectureStore.getPrefectureInfo()
+  await prefectureStore.getPrefectureInfo()
   const prefList = computed((): PrefList => prefectureStore.prefList)
   const onChangedCheckbox = (prefCode: PrefInfo['prefCode'], event: Event): void => {
     const target = event.target as HTMLInputElement

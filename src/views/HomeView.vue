@@ -6,8 +6,14 @@
 
 <template>
   <main>
+    <h1>日本の人口統計</h1>
     <PrefListSection />
     <CategoryButtons />
     <PrefChart />
   </main>
 </template>
+<style scoped>
+  h1 {
+    text-align: center;
+  }
+</style>

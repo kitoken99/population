@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import PrefListSection from '@/components/PrefListSection.vue'
-  import CategoryCheckBoxes from '@/components/CategoryCheckBoxes.vue'
+  import CategoryButtons from '@/components/CategoryButtons.vue'
   import PrefChart from '@/components/PrefChart.vue'
 </script>
 
@@ -10,7 +10,7 @@
       <template #default>
         <div>
           <PrefListSection />
-          <CategoryCheckBoxes />
+          <CategoryButtons />
           <PrefChart />
         </div>
       </template>

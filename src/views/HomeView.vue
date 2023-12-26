@@ -6,14 +6,8 @@
 
 <template>
   <main>
-    <Suspense>
-      <template #default>
-        <div>
-          <PrefListSection />
-          <CategoryButtons />
-          <PrefChart />
-        </div>
-      </template>
-    </Suspense>
+    <PrefListSection />
+    <CategoryButtons />
+    <PrefChart />
   </main>
 </template>

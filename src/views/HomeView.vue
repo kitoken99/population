@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import PrefList from '@/components/PrefList.vue'
+  import PrefListSection from '@/components/PrefListSection.vue'
   import CategoryCheckBoxes from '@/components/CategoryCheckBoxes.vue'
   import PrefChart from '@/components/PrefChart.vue'
 </script>
@@ -9,7 +9,7 @@
     <Suspense>
       <template #default>
         <div>
-          <PrefList />
+          <PrefListSection />
           <CategoryCheckBoxes />
           <PrefChart />
         </div>

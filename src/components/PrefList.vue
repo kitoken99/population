@@ -4,7 +4,7 @@
   import type { PrefList } from '@/stores/prefecture'
   import PrefListItem from '@/components/PrefListItem.vue'
   const prefectureStore = usePrefectureStore()
-  await prefectureStore.getPrefectureInfo()
+  prefectureStore.getPrefectureInfo()
   const prefList = computed((): PrefList => prefectureStore.prefList)
 </script>
 
